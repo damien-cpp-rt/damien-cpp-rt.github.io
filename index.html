@@ -6,18 +6,53 @@
 <meta property="og:description" content="XRUN 0, p95 지터 수치, VST3 체인 아키텍처.">
 <meta property="og:image" content="assets/og.png">
 <style>
-:root{--w:820px}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,sans-serif;line-height:1.6;color:#e7e7e7;background:#111}
-a{color:#8ab4ff;text-decoration:none}a:hover{text-decoration:underline}
-.wrap{max-width:var(--w);margin:0 auto;padding:24px}header{padding:40px 0 20px}
-h1{font-size:28px;margin:0 0 8px}.sub{opacity:.9;margin-bottom:16px}
-.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-.btn{padding:10px 14px;border-radius:10px;background:#1f1f1f;border:1px solid #2a2a2a;display:inline-block}
-section{padding:28px 0;border-top:1px solid #1e1e1e}h2{font-size:22px;margin:0 0 16px}
-.grid{display:grid;grid-template-columns:1fr;gap:16px}@media(min-width:880px){.grid.two{grid-template-columns:1fr 1fr}}
-.card{padding:16px;border:1px solid #2a2a2a;border-radius:12px;background:#151515}
-.kpi{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 12px}.kpi b{padding:6px 10px;border-radius:8px;background:#0f1a2b;border:1px solid #20324f}
-video,img{width:100%;border-radius:12px}
-footer{padding:24px 0 60px;opacity:.8}
+:root{
+  --paper:#F7F6F3; --ink:#0E0E10; --ink-2:#3A3A3A; --line:#D8D6D1; --accent:#5B5B5B;
+  --w:820px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",sans-serif;
+  line-height:1.7; letter-spacing:.01em;
+}
+a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink-2)}
+a:hover{opacity:.7}
+.wrap{max-width:var(--w); margin:0 auto; padding:56px 24px}
+header{padding:24px 0 8px}
+h1{font-weight:400; font-size:28px; letter-spacing:.02em; margin:0 0 8px}
+.sub{color:var(--ink-2); margin-bottom:20px}
+.btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
+.btn{
+  padding:8px 12px; border:1px solid var(--accent); border-radius:8px;
+  background:transparent; color:var(--ink); transition:opacity .15s ease;
+}
+.btn:hover{opacity:.75}
+section{padding:32px 0; position:relative}
+section + section{border-top:1px solid var(--line)}
+h2{font-weight:400; font-size:18px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); margin:0 0 14px}
+h3{font-weight:400; font-size:17px; margin:0 0 8px}
+ul{margin:8px 0 0 18px; padding:0}
+li{margin:2px 0}
+.kpi{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 14px}
+.kpi b{
+  font-weight:400; padding:6px 10px; border:1px solid var(--accent); border-radius:10px;
+  background:rgba(0,0,0,.025);
+}
+figure{margin:0}
+img,video{width:100%; border-radius:8px; filter:grayscale(1) contrast(1.08) brightness(.95) saturate(.1)}
+/* 잉크 선 느낌의 구분선 */
+.hr-ink{
+  height:1px; background:linear-gradient(90deg,transparent,rgba(0,0,0,.35),transparent);
+  filter:blur(.2px); margin:24px 0
+}
+/* 잉크 마크(선택) */
+.mark{
+  display:inline-block; padding:0 4px 2px; background:linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.02));
+  border-bottom:1px solid var(--accent);
+}
+footer{padding:32px 0 60px; color:var(--ink-2)}
 </style></head><body><div class="wrap">
 
 <header>
