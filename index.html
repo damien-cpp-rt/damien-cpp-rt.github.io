@@ -7,51 +7,102 @@
 <meta property="og:image" content="assets/og.png">
 <style>
 :root{
-  --paper:#F7F6F3; --ink:#0E0E10; --ink-2:#3A3A3A; --line:#D8D6D1; --accent:#5B5B5B;
+  /* 색(지금 톤 유지) */
+  --paper:#F7F6F3; --ink:#0E0E10; --ink-2:#3A3A3A; --line:#D8D6D1;
   --w:820px;
+  /* 자간/두께 프리셋 */
+  --track-title:.06em;   /* 제목: 더 넓게 */
+  --track-sub:.02em;     /* 부제: 약간 넓게 */
+  --track-body:.005em;   /* 본문: 미세하게 */
 }
+
+/* 폰트 임포트(직접 호스팅) */
+@font-face{
+  font-family:"TitleKR";
+  src:url("assets/fonts/SUIT-Variable.woff2") format("woff2");
+  font-weight:100 900; font-style:normal; font-display:swap;
+  unicode-range: U+1100-11FF, U+3130-318F, U+AC00-D7A3; /* 한글 */
+}
+@font-face{
+  font-family:"TitleEN";
+  src:url("assets/fonts/SpaceGrotesk-Variable.woff2") format("woff2");
+  font-weight:300 700; font-style:normal; font-display:swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC;
+}
+@font-face{
+  font-family:"BodyKR";
+  src:url("assets/fonts/PretendardVariable.woff2") format("woff2");
+  font-weight:100 900; font-style:normal; font-display:swap;
+  unicode-range: U+1100-11FF, U+3130-318F, U+AC00-D7A3;
+}
+@font-face{
+  font-family:"BodyEN";
+  src:url("assets/fonts/Inter-Variable.woff2") format("woff2");
+  font-weight:100 900; font-style:normal; font-display:swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC;
+}
+
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0; background:var(--paper); color:var(--ink);
-  font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",sans-serif;
-  line-height:1.7; letter-spacing:.01em;
+  font-family:"BodyKR","BodyEN",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",sans-serif;
+  line-height:1.72; letter-spacing:var(--track-body); font-weight:420;
 }
-a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink-2)}
-a:hover{opacity:.7}
 .wrap{max-width:var(--w); margin:0 auto; padding:56px 24px}
-header{padding:24px 0 8px}
-h1{font-weight:400; font-size:28px; letter-spacing:.02em; margin:0 0 8px}
-.sub{color:var(--ink-2); margin-bottom:20px}
-.btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
+a{color:var(--ink); text-decoration:none; border-bottom:1px solid rgba(0,0,0,.35)}
+a:hover{opacity:.75}
+header{padding:20px 0 8px}
+
+/* 제목/부제/본문/캡션 */
+h1{
+  margin:0 0 10px;
+  font-weight:400; line-height:1.22; letter-spacing:var(--track-title);
+  font-size:36px;
+  /* 기본은 한글 제목 폰트, 안에 .en span으로 영문만 바꾼다 */
+  font-family:"TitleKR","TitleEN",sans-serif;
+}
+.sub{
+  color:var(--ink-2); margin-bottom:16px;
+  font-size:17px; line-height:1.6; letter-spacing:var(--track-sub); font-weight:500;
+  font-family:"BodyKR","BodyEN",sans-serif;
+}
+p,li{font-size:16.5px}
+
+/* 영어 전용/한국어 전용 헬퍼 */
+.en{font-family:"TitleEN","BodyEN","TitleKR",sans-serif; letter-spacing:.03em}
+.kr{font-family:"TitleKR","BodyKR","TitleEN",sans-serif}
+
+/* 버튼 */
+.btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
 .btn{
-  padding:8px 12px; border:1px solid var(--accent); border-radius:8px;
-  background:transparent; color:var(--ink); transition:opacity .15s ease;
+  padding:9px 13px; border:1px solid #BEBBB2; border-radius:8px;
+  background:transparent; color:var(--ink); transition:opacity .15s ease; font-weight:520;
 }
-.btn:hover{opacity:.75}
-section{padding:32px 0; position:relative}
+.btn:hover{opacity:.8}
+
+/* 섹션/구분선 */
+section{padding:32px 0}
 section + section{border-top:1px solid var(--line)}
-h2{font-weight:400; font-size:18px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); margin:0 0 14px}
-h3{font-weight:400; font-size:17px; margin:0 0 8px}
-ul{margin:8px 0 0 18px; padding:0}
-li{margin:2px 0}
-.kpi{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 14px}
+h2{
+  margin:0 0 14px; font-weight:500; font-size:18px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-2);
+}
+
+/* KPI 칩 */
+.kpi{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 14px}
 .kpi b{
-  font-weight:400; padding:6px 10px; border:1px solid var(--accent); border-radius:10px;
-  background:rgba(0,0,0,.025);
+  font-weight:500; padding:7px 11px; border:1px solid #BEBBB2; border-radius:10px;
+  background:rgba(0,0,0,.03); letter-spacing:.02em;
 }
-figure{margin:0}
-img,video{width:100%; border-radius:8px; filter:grayscale(1) contrast(1.08) brightness(.95) saturate(.1)}
-/* 잉크 선 느낌의 구분선 */
-.hr-ink{
-  height:1px; background:linear-gradient(90deg,transparent,rgba(0,0,0,.35),transparent);
-  filter:blur(.2px); margin:24px 0
-}
-/* 잉크 마크(선택) */
-.mark{
-  display:inline-block; padding:0 4px 2px; background:linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.02));
-  border-bottom:1px solid var(--accent);
-}
+
+/* 미디어 흑백 듀오톤 */
+img,video{width:100%; border-radius:8px; filter:grayscale(1) contrast(1.06) brightness(.96)}
+
+/* 리스트(서브 프로젝트) */
+.subs{list-style:none; padding:0; margin:0}
+.subs li{margin:8px 0}
+.subs a{border-bottom:1px solid rgba(0,0,0,.25)}
 footer{padding:32px 0 60px; color:var(--ink-2)}
 </style></head><body><div class="wrap">
 
