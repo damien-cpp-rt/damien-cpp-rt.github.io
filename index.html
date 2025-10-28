@@ -1,0 +1,82 @@
+<!doctype html><html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C++/Rust 오디오 엔진 개발자 | Ryoma</title>
+<meta name="description" content="저지연 오디오 파이프라인과 VST3 호스팅을 수치로 증명합니다. C++/JUCE/Rust FFI.">
+<meta property="og:title" content="C++/Rust 오디오 엔진 개발자 | Ryoma">
+<meta property="og:description" content="XRUN 0, p95 지터 수치, VST3 체인 아키텍처.">
+<meta property="og:image" content="assets/og.png">
+<style>
+:root{--w:820px}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,sans-serif;line-height:1.6;color:#e7e7e7;background:#111}
+a{color:#8ab4ff;text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:var(--w);margin:0 auto;padding:24px}header{padding:40px 0 20px}
+h1{font-size:28px;margin:0 0 8px}.sub{opacity:.9;margin-bottom:16px}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.btn{padding:10px 14px;border-radius:10px;background:#1f1f1f;border:1px solid #2a2a2a;display:inline-block}
+section{padding:28px 0;border-top:1px solid #1e1e1e}h2{font-size:22px;margin:0 0 16px}
+.grid{display:grid;grid-template-columns:1fr;gap:16px}@media(min-width:880px){.grid.two{grid-template-columns:1fr 1fr}}
+.card{padding:16px;border:1px solid #2a2a2a;border-radius:12px;background:#151515}
+.kpi{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 12px}.kpi b{padding:6px 10px;border-radius:8px;background:#0f1a2b;border:1px solid #20324f}
+video,img{width:100%;border-radius:12px}
+footer{padding:24px 0 60px;opacity:.8}
+</style></head><body><div class="wrap">
+
+<header>
+  <h1>C++/Rust 오디오 엔진 개발자</h1>
+  <div class="sub">저지연 오디오 파이프라인과 VST3 호스팅을 <b>수치</b>로 증명합니다. C++/JUCE/Rust FFI.</div>
+  <div class="btns">
+    <a class="btn" href="https://github.com/damien-cpp-rt" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume.pdf</a>
+    <a class="btn" href="mailto:jim186918@gmail.com">Email</a>
+  </div>
+</header>
+
+<section id="featured">
+  <h2>Featured · Ryuichi Mini-DAW</h2>
+  <video controls preload="metadata"><source src="assets/ryuichi_demo.mp4" type="video/mp4"></video>
+  <div class="kpi">
+    <b>XRUN 0 (5분)</b>
+    <b>p95 지터 ≤ XX ms</b>
+    <b>CPU ≤ XX% @ 48 kHz · 128f</b>
+  </div>
+  <ul>
+    <li>아키텍처: 디코더 → rtrb 링버퍼 → 카피 → 오디오 콜백 → VST3 체인</li>
+    <li>콜백 안정화: 코어 고정 + TIME_CRITICAL 우선순위</li>
+    <li>문서/코드: <a href="https://github.com/..." target="_blank" rel="noopener">README</a> · <a href="https://www.notion.so/..." target="_blank" rel="noopener">설계 문서</a></li>
+  </ul>
+  <img src="assets/architecture.png" alt="오디오 파이프라인 다이어그램">
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="grid two">
+    <div class="card">
+      <h3>UE5 Multiplayer · 캐릭터 선택/동기화</h3>
+      <ul><li>Dedicated Server, PlayerState 동기화, UI 실시간 갱신</li>
+        <li>코드/영상: <a href="https://github.com/..." target="_blank" rel="noopener">GitHub</a> · <a href="https://youtu.be/..." target="_blank" rel="noopener">YouTube</a></li></ul>
+    </div>
+    <div class="card">
+      <h3>PACMAN(C++) · 자료구조 중심</h3>
+      <ul><li>2D 벡터 맵, 충돌, OOP 구조</li>
+        <li>코드/영상: <a href="https://github.com/..." target="_blank" rel="noopener">GitHub</a> · <a href="https://youtu.be/..." target="_blank" rel="noopener">YouTube</a></li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <ul>
+    <li>C++, Rust / JUCE, VST3 / rtrb, 스레드 우선순위, 코어 어피니티</li>
+    <li>근거 링크: <a href="https://github.com/..." target="_blank" rel="noopener">FFI/오디오 코드</a></li>
+  </ul>
+</section>
+
+<section id="experience">
+  <h2>Experience</h2>
+  <ul>
+    <li>제이콥시스템 · 보안 SW 엔지니어(주임) — 재현·원인·조치, 자동화 개선</li>
+    <li>교육 — 언리얼 부트캠프, 보안과정. 산출물 중심</li>
+  </ul>
+</section>
+
+<footer>© Ryoma — <a href="mailto:jim186918@gmail.com">jim186918@gmail.com</a></footer>
+</div></body></html>
