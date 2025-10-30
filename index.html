@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="ko">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -9,6 +8,12 @@
     <meta name="color-scheme" content="light">
     <link rel="icon" href="assets/favicon.ico">
     <link rel="canonical" href="https://damien-cpp-rt.github.io/">
+
+    <!-- Preload variable fonts for faster first paint -->
+    <link rel="preload" href="assets/fonts/SUIT-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/SpaceGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Open Graph -->
     <meta property="og:title" content="이명재 포트폴리오 | Damien">
@@ -67,14 +72,9 @@
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC
         }
 
-        * {
-            box-sizing: border-box
-        }
+        * { box-sizing: border-box }
 
-        html,
-        body {
-            height: 100%
-        }
+        html, body { height: 100% }
 
         body {
             margin: 0;
@@ -95,25 +95,18 @@
         a {
             color: var(--ink);
             text-decoration: none;
-            border-bottom: 1px solid rgba(0, 0, 0, .35)
+            border-bottom: 2px solid rgba(0, 0, 0, .40)
+        }
+        a:hover { opacity: .85 }
+        a:focus-visible, .btn:focus-visible, .video-play:focus-visible {
+            outline: 2px solid #0E0E10;
+            outline-offset: 2px;
         }
 
-        a:hover {
-            opacity: .75
-        }
+        header { padding: 20px 0 8px; text-align: left }
 
-        header {
-            padding: 20px 0 8px;
-            text-align: left
-        }
-
-        .stack>* {
-            margin: 0
-        }
-
-        .stack>*+* {
-            margin-top: 12px
-        }
+        .stack>* { margin: 0 }
+        .stack>*+* { margin-top: 12px }
 
         h1 {
             margin: 0 0 10px;
@@ -134,19 +127,11 @@
             font-family: "BodyKR", "BodyEN", sans-serif
         }
 
-        .en {
-            font-family: "TitleEN", "BodyEN", "TitleKR", sans-serif;
-            letter-spacing: .03em
-        }
+        .en { font-family: "TitleEN", "BodyEN", "TitleKR", sans-serif; letter-spacing: .03em }
 
         .btns {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-            justify-content: flex-start
+            display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; justify-content: flex-start
         }
-
         .btn {
             padding: 9px 13px;
             border: 1px solid #BEBBB2;
@@ -156,18 +141,10 @@
             transition: opacity .15s ease;
             font-weight: 560
         }
+        .btn:hover { opacity: .8 }
 
-        .btn:hover {
-            opacity: .8
-        }
-
-        section {
-            padding: 32px 0
-        }
-
-        section+section {
-            border-top: 1px solid var(--line)
-        }
+        section { padding: 32px 0 }
+        section+section { border-top: 1px solid var(--line) }
 
         h2 {
             margin: 0 0 14px;
@@ -184,15 +161,12 @@
             margin-top: 8px;
             font-size: 15.5px
         }
-
-        .info th,
-        .info td {
+        .info th, .info td {
             padding: 8px 10px;
             border-bottom: 1px solid var(--line);
             text-align: left;
             vertical-align: top
         }
-
         .info th {
             width: 130px;
             color: var(--ink-2);
@@ -201,12 +175,8 @@
         }
 
         .kpi {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 12px 0 14px
+            display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 14px
         }
-
         .kpi b {
             font-weight: 520;
             padding: 7px 11px;
@@ -216,49 +186,18 @@
             letter-spacing: .02em
         }
 
-        img,
-        video {
-            width: 100%;
-            border-radius: 8px
-        }
+        img, video { width: 100%; border-radius: 8px }
+        img { filter: grayscale(1) contrast(1.06) brightness(.96) }
+        img.color { filter: none }
+        video.mono { filter: grayscale(1) contrast(1.06) brightness(.96) }
 
-        img {
-            filter: grayscale(1) contrast(1.06) brightness(.96)
-        }
+        .video-notes { margin: 10px 0 0 18px; color: var(--ink-2); font-size: 15px; padding: 0 }
+        .video-notes li { margin: 3px 0 }
 
-        img.color {
-            filter: none
-        }
+        .subs { list-style: none; padding: 0; margin: 0 }
+        .subs li { margin: 8px 0 }
 
-        video.mono {
-            filter: grayscale(1) contrast(1.06) brightness(.96)
-        }
-
-        .video-notes {
-            margin: 10px 0 0 18px;
-            color: var(--ink-2);
-            font-size: 15px;
-            padding: 0
-        }
-
-        .video-notes li {
-            margin: 3px 0
-        }
-
-        .subs {
-            list-style: none;
-            padding: 0;
-            margin: 0
-        }
-
-        .subs li {
-            margin: 8px 0
-        }
-
-        footer {
-            padding: 32px 0 60px;
-            color: var(--ink-2)
-        }
+        footer { padding: 32px 0 60px; color: var(--ink-2) }
 
         .exp h3 {
             margin: 6px 0 8px;
@@ -268,7 +207,6 @@
             color: var(--ink-2);
             text-transform: uppercase
         }
-
         .exp .row {
             display: grid;
             grid-template-columns: 170px 1fr;
@@ -276,122 +214,62 @@
             padding: 14px 0;
             border-top: 1px solid var(--line)
         }
-
-        .exp .row:first-of-type {
-            border-top: none
-        }
-
-        .exp .when {
-            color: var(--ink-2);
-            letter-spacing: .02em;
-            font-variant-numeric: tabular-nums
-        }
-
-        .exp .what strong {
-            font-weight: 560
-        }
-
-        .exp .where {
-            color: var(--ink-2)
-        }
-
-        .exp .desc {
-            margin: 4px 0 0
-        }
-
-        .exp .proof {
-            margin: 6px 0 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            font-size: 15px
-        }
-
-        .exp .proof a {
-            border-bottom: 1px solid rgba(0, 0, 0, .25)
-        }
+        .exp .row:first-of-type { border-top: none }
+        .exp .when { color: var(--ink-2); letter-spacing: .02em; font-variant-numeric: tabular-nums }
+        .exp .what strong { font-weight: 560 }
+        .exp .where { color: var(--ink-2) }
+        .exp .desc { margin: 4px 0 0 }
+        .exp .proof { margin: 6px 0 0; padding: 0; list-style: none; display: flex; gap: 12px; flex-wrap: wrap; font-size: 15px }
+        .exp .proof a { border-bottom: 1px solid rgba(0, 0, 0, .25) }
 
         /* code block */
-        pre {
-            background: #F1F0EC;
-            border: 1px solid #D8D6D1;
-            border-radius: 8px;
-            padding: 14px;
-            overflow: auto
-        }
+        pre { background: #F1F0EC; border: 1px solid #D8D6D1; border-radius: 8px; padding: 14px; overflow: auto }
+        code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13.5px }
 
-        code {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-            font-size: 13.5px
+        /* --- video overlay for YouTube iframe --- */
+        .video { position: relative; width: 100%; margin: 10px 0; }
+        @supports (aspect-ratio: 16/9) {
+            .video { aspect-ratio: 16 / 9; }
+            .video iframe { width: 100%; height: 100%; border: 0; }
         }
-
-        /* --- video overlay (poster 유지 + 커스텀 재생 버튼) --- */
-        .video-wrap {
-            position: relative
+        @supports not (aspect-ratio: 16/9) {
+            .video::before { content: ""; display: block; padding-top: 56.25%; }
+            .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
         }
-
         .video-play {
-            position: absolute;
-            inset: 0;
-            display: grid;
-            place-items: center;
-            border: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, .35));
-            cursor: pointer;
-            color: #fff;
-            font-size: 56px;
-            font-weight: 700;
-            border-radius: 8px
+            position: absolute; inset: 0; display: grid; place-items: center;
+            border: 0; background: linear-gradient(transparent, rgba(0, 0, 0, .35));
+            cursor: pointer; color: #fff; font-size: 56px; font-weight: 700; border-radius: 8px
         }
-
-        .video-play:hover {
-            background: linear-gradient(transparent, rgba(0, 0, 0, .45))
-        }
+        .video-play:hover { background: linear-gradient(transparent, rgba(0, 0, 0, .45)) }
 
         @media (prefers-reduced-motion: reduce) {
-            .video-play {
-                transition: none
-            }
+            .video-play { transition: none }
         }
 
-        .video {
-            position: relative;
-            width: 100%;
-            margin: 10px 0;
-        }
-
-        /* 신 브라우저용 */
-        @supports (aspect-ratio: 16/9) {
-            .video {
-                aspect-ratio: 16 / 9;
-            }
-
-            .video iframe {
-                width: 100%;
-                height: 100%;
-                border: 0;
-            }
-        }
-
-        /* 구형 사파리/엣지용(폴백) */
-        @supports not (aspect-ratio: 16/9) {
-            .video::before {
-                content: "";
-                display: block;
-                padding-top: 56.25%;
-            }
-
-            .video iframe {
-                position: absolute;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                border: 0;
-            }
+        /* Mobile stacking for Experience */
+        @media (max-width: 560px){
+            .exp .row{ grid-template-columns: 1fr; }
+            .exp .when{ margin-bottom: 4px; }
         }
     </style>
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"Person",
+      "name":"이명재",
+      "jobTitle":"C++/Rust Developer",
+      "url":"https://damien-cpp-rt.github.io/",
+      "sameAs":[
+        "https://github.com/damien-cpp-rt",
+        "https://www.youtube.com/@MJlee-c3d"
+      ],
+      "email":"mailto:jim186918@gmail.com",
+      "telephone":"+82-10-4221-1869"
+    }
+    </script>
 </head>
 
 <body>
@@ -408,21 +286,19 @@
                     </tr>
                     <tr>
                         <th scope="row">NUMBER</th>
-                        <td><a href="tel:+821042211869">010-4221-1869</a></td>
+                        <td><a href="tel:+821042211869" aria-label="전화 걸기 010-4221-1869">010-4221-1869</a></td>
                     </tr>
                     <tr>
                         <th scope="row">EMAIL</th>
-                        <td><a href="mailto:jim186918@gmail.com">jim186918@gmail.com</a></td>
+                        <td><a href="mailto:jim186918@gmail.com" aria-label="이메일 보내기 jim186918@gmail.com">jim186918@gmail.com</a></td>
                     </tr>
                 </tbody>
             </table>
 
             <div class="btns">
-                <a class="btn" href="assets/이력서.pdf" target="_blank" rel="noopener noreferrer">이력서</a>
-                <a class="btn" href="https://github.com/damien-cpp-rt" target="_blank"
-                    rel="noopener noreferrer">GitHub</a>
-                <a class="btn" href="https://www.youtube.com/@MJlee-c3d/videos" target="_blank"
-                    rel="noopener noreferrer">YouTube</a>
+                <a class="btn" href="assets/이력서.pdf" target="_blank" rel="noopener noreferrer" aria-label="이력서 PDF 열기">이력서</a>
+                <a class="btn" href="https://github.com/damien-cpp-rt" target="_blank" rel="noopener noreferrer" aria-label="GitHub 프로필 열기">GitHub</a>
+                <a class="btn" href="https://www.youtube.com/@MJlee-c3d/videos" target="_blank" rel="noopener noreferrer" aria-label="YouTube 채널 열기">YouTube</a>
             </div>
         </header>
 
@@ -441,47 +317,40 @@
 
             <h3>2025</h3>
             <article class="row">
-                <div class="when"><time datetime="2025-03">2025.03</time> – <time datetime="2025-11">2025.11</time>
-                </div>
+                <div class="when"><time datetime="2025-03">2025.03</time> – <time datetime="2025-11">2025.11</time></div>
                 <div class="what">
                     <strong>경일게임IT아카데미</strong>
                     <span class="where">· [기업연계] 언리얼 엔진 기반 게임 개발자 부트캠프</span>
                     <p class="desc">C++/UE5 제작 파이프라인, 멀티플레이 동기화, 실습 산출물 중심.</p>
                     <ul class="proof">
-                        <li><a href="https://github.com/damien-cpp-rt" target="_blank"
-                                rel="noopener noreferrer">프로젝트(git)</a></li>
-                        <li><a href="https://www.notion.so/leemj/29aa5e59158d80e1a654ff3279b7ad2f" target="_blank"
-                                rel="noopener noreferrer">프로젝트(Notion)</a></li>
+                        <li><a href="https://github.com/damien-cpp-rt" target="_blank" rel="noopener noreferrer">프로젝트(git)</a></li>
+                        <li><a href="https://www.notion.so/leemj/29aa5e59158d80e1a654ff3279b7ad2f" target="_blank" rel="noopener noreferrer">프로젝트(Notion)</a></li>
                     </ul>
                 </div>
             </article>
 
             <h3>2023–2024</h3>
             <article class="row">
-                <div class="when"><time datetime="2023-02">2023.02</time> – <time datetime="2024-07">2024.07</time>
-                </div>
+                <div class="when"><time datetime="2023-02">2023.02</time> – <time datetime="2024-07">2024.07</time></div>
                 <div class="what">
                     <strong>제이콥시스템</strong>
                     <span class="where">· 보안 SW 엔지니어(주임)</span>
                     <p class="desc">재현–원인–조치 체계화, 접근제어/DB보안/QoS 운영 자동화 및 문서화.</p>
                     <ul class="proof">
-                        <li><a href="https://www.notion.so/leemj/29aa5e59158d80b89f75e049d09889a9" target="_blank"
-                                rel="noopener noreferrer">업무 노트</a></li>
+                        <li><a href="https://www.notion.so/leemj/29aa5e59158d80b89f75e049d09889a9" target="_blank" rel="noopener noreferrer">업무 노트</a></li>
                     </ul>
                 </div>
             </article>
 
             <h3>2022–2023</h3>
             <article class="row">
-                <div class="when"><time datetime="2022-08">2022.08</time> – <time datetime="2023-02">2023.02</time>
-                </div>
+                <div class="when"><time datetime="2022-08">2022.08</time> – <time datetime="2023-02">2023.02</time></div>
                 <div class="what">
                     <strong>대우직업능력개발원</strong>
                     <span class="where">· 정보시스템 구축/보안 과정</span>
                     <p class="desc">서버/네트워크 실습(CentOS, DHCP/FTP/DNS/AD, 가상화 등) 및 프로토콜 심화.</p>
                     <ul class="proof">
-                        <li><a href="https://naver.me/GEizXKbw" target="_blank" rel="noopener noreferrer">학습 및 수업자료</a>
-                        </li>
+                        <li><a href="https://naver.me/GEizXKbw" target="_blank" rel="noopener noreferrer">학습 및 수업자료</a></li>
                     </ul>
                 </div>
             </article>
@@ -491,23 +360,26 @@
             <h2>Featured · Ryuichi Mini-DAW</h2>
 
             <div class="video">
+                <!-- Overlay play button -->
+                <button class="video-play" type="button" aria-label="영상 재생">▶</button>
                 <iframe
+                    id="ryuichi"
                     src="https://www.youtube-nocookie.com/embed/Q7ig6vn-y4M?rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&enablejsapi=1&origin=https%3A%2F%2Fdamien-cpp-rt.github.io"
                     title="Ryuichi Mini-DAW Demo"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen></iframe>
             </div>
             <p style="margin:6px 0 0; font-size:14px; color:var(--ink-2)">
-                영상이 안 보이면 <a href="https://www.youtube.com/watch?v=Q7ig6vn-y4M" target="_blank" rel="noopener">여기를
-                    클릭</a>.
+                영상이 안 보이면 <a href="https://www.youtube.com/watch?v=Q7ig6vn-y4M" target="_blank" rel="noopener">여기를 클릭</a>.
             </p>
 
+            <!-- Video notes with deep-links -->
             <ul class="video-notes">
-                <li>0:00–0:39 · UI 조작</li>
-                <li>0:40–1:17 · BPM 조작</li>
-                <li>1:18–5:30 · 제작</li>
-                <li>5:31–6:05 · BPM 조작 시 주의</li>
-                <li>6:05–7:04 · 저장</li>
+                <li><a href="https://www.youtube.com/watch?v=Q7ig6vn-y4M&t=0s" target="_blank" rel="noopener">0:00–0:39 · UI 조작</a></li>
+                <li><a href="https://www.youtube.com/watch?v=Q7ig6vn-y4M&t=40s" target="_blank" rel="noopener">0:40–1:17 · BPM 조작</a></li>
+                <li><a href="https://www.youtube.com/watch?v=Q7ig6vn-y4M&t=78s" target="_blank" rel="noopener">1:18–5:30 · 제작</a></li>
+                <li><a href="https://www.youtube.com/watch?v=Q7ig6vn-y4M&t=331s" target="_blank" rel="noopener">5:31–6:05 · BPM 조작 시 주의</a></li>
+                <li><a href="https://www.youtube.com/watch?v=Q7ig6vn-y4M&t=365s" target="_blank" rel="noopener">6:05–7:04 · 저장</a></li>
             </ul>
 
             <div class="kpi">
@@ -518,10 +390,8 @@
             </div>
             <ul>
                 <li>문서/코드:
-                    <a href="https://github.com/damien-cpp-rt/Ryuichi_DAW/blob/master/README.md" target="_blank"
-                        rel="noopener noreferrer">README</a> ·
-                    <a href="https://www.notion.so/leemj/5-254a5e59158d803c8274eb7cfda5ab0e" target="_blank"
-                        rel="noopener noreferrer">일정및 계획</a>
+                    <a href="https://github.com/damien-cpp-rt/Ryuichi_DAW/blob/master/README.md" target="_blank" rel="noopener noreferrer">README</a> ·
+                    <a href="https://www.notion.so/leemj/5-254a5e59158d803c8274eb7cfda5ab0e" target="_blank" rel="noopener noreferrer">일정및 계획</a>
                 </li>
             </ul>
 
@@ -533,8 +403,7 @@
                     <li>링버퍼: <code>RB1_FRAMES = 16,777,216</code> (frames)</li>
                     <li>아키텍처: 디코더 → rtrb 링버퍼(인터리브드) → 오디오 콜백(인터리브드) → VST3 체인</li>
                     <li>운영 원칙: 계산 단위는 <b>frames</b>. 콜백은 0.0으로 초기화 후 pop된 샘플만 누적.</li>
-                    <li>스케줄링: 매 사이클 rr 시작점을 회전, 각 트랙은 <code>is_full()</code> 아니면 최대 <code>CHUNK_DECODE</code> 프레임 push.
-                    </li>
+                    <li>스케줄링: 매 사이클 rr 시작점을 회전, 각 트랙은 <code>is_full()</code> 아니면 최대 <code>CHUNK_DECODE</code> 프레임 push.</li>
                 </ul>
             </section>
 
@@ -542,26 +411,11 @@
                 <h2>Benchmarks</h2>
                 <table class="info">
                     <tbody>
-                        <tr>
-                            <th>환경</th>
-                            <td>48 kHz · 2ch</td>
-                        </tr>
-                        <tr>
-                            <th>XRUN</th>
-                            <td>0 (5분 연속, Block 256 기준)</td>
-                        </tr>
-                        <tr>
-                            <th>지터 p95</th>
-                            <td>≤ 0.04 ms (@ 48 kHz · 256f)</td>
-                        </tr>
-                        <tr>
-                            <th>CPU</th>
-                            <td>≤ 14% (Ryzen 5 5600X 6-Core, Release)</td>
-                        </tr>
-                        <tr>
-                            <th>워커 스케줄</th>
-                            <td>rr 시작점 회전, 포화 트랙 즉시 스킵</td>
-                        </tr>
+                        <tr><th>환경</th><td>48 kHz · 2ch</td></tr>
+                        <tr><th>XRUN</th><td>0 (5분 연속, Block 256 기준)</td></tr>
+                        <tr><th>지터 p95</th><td>≤ 0.04 ms (@ 48 kHz · 256f)</td></tr>
+                        <tr><th>CPU</th><td>≤ 14% (Ryzen 5 5600X 6-Core, Release)</td></tr>
+                        <tr><th>워커 스케줄</th><td>rr 시작점 회전, 포화 트랙 즉시 스킵</td></tr>
                     </tbody>
                 </table>
             </section>
@@ -579,17 +433,14 @@
                 <h2>Architecture Gallery</h2>
                 <figure style="margin-top:10px">
                     <img src="assets/Main.PNG" loading="lazy" decoding="async" alt="Main pipeline overview">
-                    <figcaption style="color:#3A3A3A;font-size:14px">Main — Decoder → rtrb(frames) → Callback → VST3
-                    </figcaption>
+                    <figcaption style="color:#3A3A3A;font-size:14px">Main — Decoder → rtrb(frames) → Callback → VST3</figcaption>
                 </figure>
                 <figure style="margin-top:10px">
                     <img src="assets/Rust.PNG" loading="lazy" decoding="async" alt="Rust side components">
-                    <figcaption style="color:#3A3A3A;font-size:14px">Rust — RingBuffer, DecoderState, rr 스케줄
-                    </figcaption>
+                    <figcaption style="color:#3A3A3A;font-size:14px">Rust — RingBuffer, DecoderState, rr 스케줄</figcaption>
                 </figure>
                 <figure style="margin-top:10px">
-                    <img src="assets/Thread,Decoding,AudioCallBack.PNG" loading="lazy" decoding="async"
-                        alt="Thread & callback timing">
+                    <img src="assets/Thread,Decoding,AudioCallBack.PNG" loading="lazy" decoding="async" alt="Thread & callback timing">
                     <figcaption style="color:#3A3A3A;font-size:14px">Thread/Callback — 콜백 논블로킹 pop 루프</figcaption>
                 </figure>
             </section>
@@ -598,7 +449,7 @@
                 <h2>Core Mixing Snippet</h2>
                 <pre><code>// rust_render_interleaved: out[L R L R …]
 out.fill(0.0); //무음 설정
-for (ti, cons_mx) in eng.consumers.iter().enumerate() { //트랙별 순화
+for (ti, cons_mx) in eng.consumers.iter().enumerate() { //트랙별 순회
   if ti >= params.volume.len() || ti >= params.pan.len() || ti >= params.muted.len() { continue; } //안전
   let muted = params.muted[ti].load(Ordering::Relaxed); //뮤트 체크
   let vol = f32::from_bits(params.volume[ti].load(Ordering::Relaxed)).clamp(0.0, 1.0); //볼륨
@@ -612,6 +463,7 @@ for (ti, cons_mx) in eng.consumers.iter().enumerate() { //트랙별 순화
     for f in 0..frames { //프레임 루프
       let l = cons.pop().unwrap_or(0.0); //L
       let r = cons.pop().unwrap_or(0.0); //R
+      if l == 0.0 && r == 0.0 { underrun = true; } // 언더런 감지(예시)
       let i = f * 2; //인덱스 계산
       unsafe { //성능 위해 언체크드
         *out.get_unchecked_mut(i)     += l * gl; // L
@@ -637,12 +489,9 @@ for (ti, cons_mx) in eng.consumers.iter().enumerate() { //트랙별 순화
         <section id="sub-projects">
             <h2>Sub Projects</h2>
             <ul class="subs">
-                <li><a href="https://www.notion.so/leemj/IT-Taks-Two-255a5e59158d802b85f1fa4ecc2998d4" target="_blank"
-                        rel="noopener noreferrer">It Takes Two 모작 · 프로토타입</a></li>
-                <li><a href="https://www.notion.so/leemj/PACMAN-255a5e59158d8035a536e3ddf35bfe5a" target="_blank"
-                        rel="noopener noreferrer">PACMAN(C++) · 2D 맵/충돌 · 자료구조 중심</a></li>
-                <li><a href="https://www.notion.so/leemj/UE5-BluePrint-Project-255a5e59158d806c91c2fe302b59922f"
-                        target="_blank" rel="noopener noreferrer">언리얼 엔진5로 제작된 창작 게임</a></li>
+                <li><a href="https://www.notion.so/leemj/IT-Taks-Two-255a5e59158d802b85f1fa4ecc2998d4" target="_blank" rel="noopener noreferrer">It Takes Two 모작 · 프로토타입</a></li>
+                <li><a href="https://www.notion.so/leemj/PACMAN-255a5e59158d8035a536e3ddf35bfe5a" target="_blank" rel="noopener noreferrer">PACMAN(C++) · 2D 맵/충돌 · 자료구조 중심</a></li>
+                <li><a href="https://www.notion.so/leemj/UE5-BluePrint-Project-255a5e59158d806c91c2fe302b59922f" target="_blank" rel="noopener noreferrer">언리얼 엔진5로 제작된 창작 게임</a></li>
             </ul>
         </section>
 
@@ -651,20 +500,34 @@ for (ti, cons_mx) in eng.consumers.iter().enumerate() { //트랙별 순화
         </footer>
     </div>
 
-    <!-- 최소 JS: 오버레이 버튼으로 재생, 재생 시작되면 버튼 제거 -->
+    <!-- YouTube Iframe API control via postMessage -->
     <script>
-        (function () {
-            const v = document.getElementById('ryuichi');
-            const btn = document.querySelector('.video-play');
-            if (!v || !btn) return;
+      (function () {
+        const iframe = document.getElementById('ryuichi');
+        const btn = document.querySelector('.video-play');
+        if (!iframe || !btn) return;
 
-            const removeBtn = () => { if (btn && btn.parentNode) btn.parentNode.removeChild(btn); };
-            // 버튼 클릭 → 재생
-            btn.addEventListener('click', () => { v.play(); }, { once: true });
-            // 네이티브 컨트롤/키보드로 재생해도 버튼 제거
-            v.addEventListener('play', removeBtn, { once: true });
-        })();
+        function playVideo() {
+          // YouTube iframe JS API via postMessage
+          const msg = JSON.stringify({ event: 'command', func: 'playVideo', args: [] });
+          iframe.contentWindow.postMessage(msg, 'https://www.youtube-nocookie.com');
+        }
+
+        btn.addEventListener('click', function () {
+          playVideo();
+          btn.remove();
+        }, { once: true });
+
+        // Optional: remove overlay if video starts by other means
+        window.addEventListener('message', function (e) {
+          try {
+            const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+            if (data && data.info && data.info.playerState === 1 && btn && btn.parentNode) {
+              btn.remove();
+            }
+          } catch (_) { /* ignore */ }
+        });
+      })();
     </script>
 </body>
-
 </html>
