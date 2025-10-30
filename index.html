@@ -355,6 +355,42 @@
                 transition: none
             }
         }
+
+        .video {
+            position: relative;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        /* 신 브라우저용 */
+        @supports (aspect-ratio: 16/9) {
+            .video {
+                aspect-ratio: 16 / 9;
+            }
+
+            .video iframe {
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        }
+
+        /* 구형 사파리/엣지용(폴백) */
+        @supports not (aspect-ratio: 16/9) {
+            .video::before {
+                content: "";
+                display: block;
+                padding-top: 56.25%;
+            }
+
+            .video iframe {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        }
     </style>
 </head>
 
@@ -454,16 +490,17 @@
         <section id="featured">
             <h2>Featured · Ryuichi Mini-DAW</h2>
 
-            <!-- 썸네일(poster) + 오버레이 버튼 포함 -->
-            <div class="video-wrap">
-                <video id="ryuichi" controls playsinline preload="none" poster="assets/ryuichi_poster.jpg" width="1200"
-                    height="675">
-                    <source src="assets/ryuichi_demo.mp4" type="video/mp4">
-                    <!-- 브라우저 미지원 fallback -->
-                    동영상을 볼 수 없습니다. <a href="assets/ryuichi_demo.mp4">직접 다운로드</a>
-                </video>
-                <button class="video-play" aria-label="재생">▶</button>
+            <div class="video">
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/Q7ig6vn-y4M?rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&enablejsapi=1&origin=https%3A%2F%2Fdamien-cpp-rt.github.io"
+                    title="Ryuichi Mini-DAW Demo"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
             </div>
+            <p style="margin:6px 0 0; font-size:14px; color:var(--ink-2)">
+                영상이 안 보이면 <a href="https://www.youtube.com/watch?v=Q7ig6vn-y4M" target="_blank" rel="noopener">여기를
+                    클릭</a>.
+            </p>
 
             <ul class="video-notes">
                 <li>0:00–0:39 · UI 조작</li>
