@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>이명재 포트폴리오 | Damien</title>
-    <meta name="description" content="겉멋보다 내부 구조. 실시간 오디오 파이프라인과 시스템 구조를 끝까지 파고드는 C++/Rust 개발자.">
+    <meta name="description" content="겉멋보다 내부 구조.시스템 구조를 끝까지 파고드는 C++/Rust 개발자.">
     <meta name="color-scheme" content="light dark">
     <link rel="icon" href="assets/favicon.ico">
     <link rel="canonical" href="https://damien-cpp-rt.github.io/">
@@ -18,7 +18,7 @@
 
     <!-- Open Graph -->
     <meta property="og:title" content="이명재 포트폴리오 | Damien">
-    <meta property="og:description" content="겉멋보다 내부 구조. 실시간 오디오 파이프라인과 시스템 구조를 끝까지 파고드는 C++/Rust 개발자.">
+    <meta property="og:description" content="겉멋보다 내부 구조.시스템 구조를 끝까지 파고드는 C++/Rust 개발자.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://damien-cpp-rt.github.io/">
     <meta property="og:image" content="https://damien-cpp-rt.github.io/assets/og.png">
@@ -204,7 +204,6 @@
             border: 1px solid var(--btn-border);
             font-weight: 560;
             color: var(--ink);
-            /* 다크모드에서도 글자 보이도록 명시 */
         }
 
         .btn:hover,
@@ -288,10 +287,12 @@
         img,
         video {
             width: 100%;
-            border-radius: 8px
+            border-radius: 8px;
         }
 
         img {
+            display: block;
+            height: auto; /* 세로 비율 유지 */
             filter: grayscale(1) contrast(1.06) brightness(.96)
         }
 
@@ -465,7 +466,6 @@
         }
 
         .hero::before {
-            /* 이미지 없으면 아래 그라디언트만으로도 분위기 생성 */
             content: "";
             position: absolute;
             inset: 0;
@@ -544,7 +544,6 @@
         }
 
         .album .tile::after {
-            /* 입자감: 이미지 없어도 텍스처 보이게 */
             content: "";
             position: absolute;
             inset: 0;
@@ -635,45 +634,47 @@
             }
         }
 
-        .featured-memo{
-      margin:10px 0 22px;
-    }
+        .featured-memo {
+            margin: 10px 0 22px;
+        }
 
-    .featured-memo-head{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-size:16px;
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      color:var(--ink-2);
-      font-weight:520;
-    }
-    .featured-memo-head span{
-      white-space:nowrap;
-    }
-    .featured-memo-head::after{
-      content:"";
-      flex:1;
-      height:1px;
-      background:var(--line);
-      opacity:.9;
-    }
+        .featured-memo-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            color: var(--ink-2);
+            font-weight: 520;
+        }
 
-    .featured-memo-body{
-      margin-top:6px;
-      padding:10px 12px;
-      border-radius:8px;
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.015);
-      font-size:14.5px;
-      line-height:1.7;
-      color:var(--ink-2);
-    }
-    html[data-theme="dark"] .featured-memo-body{
-      background:rgba(255,255,255,.02);
-    }
+        .featured-memo-head span {
+            white-space: nowrap;
+        }
 
+        .featured-memo-head::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--line);
+            opacity: .9;
+        }
+
+        .featured-memo-body {
+            margin-top: 6px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: rgba(0, 0, 0, .015);
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: var(--ink-2);
+        }
+
+        html[data-theme="dark"] .featured-memo-body {
+            background: rgba(255, 255, 255, .02);
+        }
     </style>
 
     <!-- Structured data -->
@@ -715,7 +716,6 @@
                 <p>"사랑하는것을베껴라. 계속해서카피하고, 그끝에서자신을찾을것이다“</p>
             </div>
         </section>
-
 
         <header class="stack">
             <h1><span class="en">C++</span> 기반 크로스플랫폼 소프트웨어 개발자</h1>
@@ -813,20 +813,20 @@
 
         <section id="featured">
             <h2>Featured · Ryuichi Mini-DAW</h2>
-            
+
             <div class="featured-memo">
                 <div class="featured-memo-head">
-                  <span>WHY · 제작 사유</span>
+                    <span>WHY · 제작 사유</span>
                 </div>
                 <div class="featured-memo-body">
-                  <p>
-                    내가 진짜 무엇을 만들고 싶은지 확인하고 싶었다.
-                    요지 야마모토의 "사랑하는 것을 베껴라. 계속해서 카피하고, 그 끝에서 자신을 찾을 것이다“는 말처럼,
-                    내가 사랑하는 음악과 작곡에 계속 손을 대다 보니 결론은 DAW였다. 예전에도 여러 DAW로 짧은 곡을 만들었고,
-                    이번엔 시작부터 끝까지 전부 내 손으로 만드는 도구를 직접 만들어 보기로 했다. 이번 작업이 내 개발 방향을 드러내는 실험이자 기록이다.
-                  </p>
+                    <p>
+                        내가 진짜 무엇을 만들고 싶은지 확인하고 싶었다.
+                        요지 야마모토의 "사랑하는 것을 베껴라. 계속해서 카피하고, 그 끝에서 자신을 찾을 것이다“는 말처럼,
+                        내가 사랑하는 음악과 작곡에 계속 손을 대다 보니 결론은 DAW였다. 예전에도 여러 DAW로 짧은 곡을 만들었고,
+                        이번엔 시작부터 끝까지 전부 내 손으로 만드는 도구를 직접 만들어 보기로 했다. 이번 작업이 내 개발 방향을 드러내는 실험이자 기록이다.
+                    </p>
                 </div>
-              </div>
+            </div>
 
             <div class="video">
                 <button class="video-play" type="button" aria-label="영상 재생">▶</button>
@@ -874,7 +874,7 @@
                 <ul>
                     <li>인터리브드 f32(LRLR…) 믹스, 오디오 콜백은 <b>논블로킹 pop</b> + 기본 무음</li>
                     <li>워커: <b>트랙 라운드로빈(rr)</b>으로 <code>CHUNK_DECODE</code> 단위 디코딩 → rtrb push</li>
-                    <li>링버퍼: <code>RB(f32)4byte * RB1_FRAMES = 16,777,216</code> = 64 MiB </li>
+                    <li>링버퍼: <code>f32(4 byte) × RB1_FRAMES(16,777,216)</code> ≈ 64 MiB</li>
                     <li>아키텍처: 디코더 → rtrb 링버퍼(인터리브드) → 오디오 콜백(인터리브드) → VST3 체인</li>
                     <li>운영 원칙: 계산 단위는 <b>frames</b>. 콜백은 0.0으로 초기화 후 pop된 샘플만 누적.</li>
                     <li>스케줄링: 매 사이클 rr 시작점을 회전, 각 트랙은 <code>is_full()</code> 아니면 최대 <code>CHUNK_DECODE</code> 프레임 push.
@@ -922,19 +922,19 @@
             <section id="architecture">
                 <h2>Architecture Gallery</h2>
                 <figure style="margin-top:10px">
-                    <img src="assets/Main.png" width="1200" height="675" loading="lazy" decoding="async"
+                    <img src="assets/Main.png" loading="lazy" decoding="async"
                         alt="Main pipeline overview">
                     <figcaption style="color:#3A3A3A;font-size:14px">Main — Decoder → rtrb(frames) → Callback → VST3
                     </figcaption>
                 </figure>
                 <figure style="margin-top:10px">
-                    <img src="assets/Rust.png" width="1200" height="675" loading="lazy" decoding="async"
+                    <img src="assets/Rust.png" loading="lazy" decoding="async"
                         alt="Rust side components">
                     <figcaption style="color:#3A3A3A;font-size:14px">Rust — RingBuffer, DecoderState, rr 스케줄
                     </figcaption>
                 </figure>
                 <figure style="margin-top:10px">
-                    <img src="assets/Thread,Decoding,AudioCallBack.png" width="1200" height="675" loading="lazy"
+                    <img src="assets/Thread,Decoding,AudioCallBack.png" loading="lazy"
                         decoding="async" alt="Thread & callback timing">
                     <figcaption style="color:#3A3A3A;font-size:14px">Thread/Callback — 콜백 논블로킹 pop 루프</figcaption>
                 </figure>
