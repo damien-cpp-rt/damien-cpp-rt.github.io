@@ -292,7 +292,8 @@
 
         img {
             display: block;
-            height: auto; /* 세로 비율 유지 */
+            height: auto;
+            /* 세로 비율 유지 */
             filter: grayscale(1) contrast(1.06) brightness(.96)
         }
 
@@ -675,6 +676,19 @@
         html[data-theme="dark"] .featured-memo-body {
             background: rgba(255, 255, 255, .02);
         }
+
+        .figcap {
+            margin-top: 4px;
+            font-size: 12px;
+            color: var(--ink-2);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            opacity: .7;
+        }
+
+        html[data-theme="dark"] .figcap {
+            opacity: .6;
+        }
     </style>
 
     <!-- Structured data -->
@@ -922,21 +936,19 @@
             <section id="architecture">
                 <h2>Architecture Gallery</h2>
                 <figure style="margin-top:10px">
-                    <img src="assets/Main.png" loading="lazy" decoding="async"
-                        alt="Main pipeline overview">
-                    <figcaption style="color:#3A3A3A;font-size:14px">Main — Decoder → rtrb(frames) → Callback → VST3
-                    </figcaption>
+                    <img src="assets/Main.png" loading="lazy" decoding="async" alt="Main pipeline overview">
+                    <figcaption class="figcap">Main · 전체 오디오 파이프라인</figcaption>
                 </figure>
+
                 <figure style="margin-top:10px">
-                    <img src="assets/Rust.png" loading="lazy" decoding="async"
-                        alt="Rust side components">
-                    <figcaption style="color:#3A3A3A;font-size:14px">Rust — RingBuffer, DecoderState, rr 스케줄
-                    </figcaption>
+                    <img src="assets/Rust.png" loading="lazy" decoding="async" alt="Rust side components">
+                    <figcaption class="figcap">Rust · 링버퍼 & 디코더 구조</figcaption>
                 </figure>
+
                 <figure style="margin-top:10px">
-                    <img src="assets/Thread,Decoding,AudioCallBack.png" loading="lazy"
-                        decoding="async" alt="Thread & callback timing">
-                    <figcaption style="color:#3A3A3A;font-size:14px">Thread/Callback — 콜백 논블로킹 pop 루프</figcaption>
+                    <img src="assets/Thread,Decoding,AudioCallBack.png" loading="lazy" decoding="async"
+                        alt="Thread & callback timing">
+                    <figcaption class="figcap">Threads · 워커/콜백 타이밍</figcaption>
                 </figure>
             </section>
 
