@@ -883,6 +883,7 @@
                 </li>
             </ul>
 
+
             <section id="highlights" aria-label="핵심 요약">
                 <h2>Highlights</h2>
                 <ul>
@@ -927,34 +928,96 @@
             <section id="troubleshooting" aria-label="문제와 해결">
                 <h2>Challenges & Fixes</h2>
                 <ul>
-                    <li><b>언더런</b> — 콜백 블로킹 제거, 출력버퍼 0.0 초기화 후 pop 누적 → 클릭 제거</li>
-                    <li><b>과다 디코딩</b> — <code>is_full()</code> 선체크 + rr 스케줄로 공평 분배</li>
-                    <li><b>시크 시 클릭</b> — <code>try_lock</code> 실패 시 콜백 무음 패스 → 클릭 방지</li>
+                    <li>
+                        <b>언더런</b> — <code>Play()</code> 직후 디코딩이 덜 된 상태에서 콜백이 프레임을 요구해
+                        XRUN(언더런) 발생
+                    </li>
+                    <li>
+                        <b>과다 디코딩</b> — <code>is_full()</code> 조건 검사 없이 디코딩을 계속해
+                        불필요한 버퍼 점유 및 메모리 사용량 증가
+                    </li>
                 </ul>
+            
+                <h3 style="margin:18px 0 6px;
+                           font-size:14px;
+                           letter-spacing:.14em;
+                           text-transform:uppercase;
+                           color:var(--ink-2);">
+                    INCIDENT LOG
+                </h3>
+            
+                <table class="info">
+                    <tbody>
+                        <tr>
+                            <th scope="row">증상</th>
+                            <td>초기 재생 이후 간헐적인 XRUN(언더런) 발생</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">원인 추적</th>
+                            <td>
+                                RB 용량, 콜백에 전달되는 프레임 수, 블록 사이즈(BS)를 로그로 찍어 보면서<br>
+                                &ldquo;초기 프레임 부족으로 인한 XRUN인지, 지터로 인한 지연인지&rdquo;를 분리해서 확인
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">조치</th>
+                            <td>
+                                <code>time_handle</code> 주변 구간을 사전 디코딩해 링버퍼를 미리 채워 두고,<br>
+                                <code>Play()</code> 시점에 콜백이 바로 충분한 프레임을 pop 할 수 있도록 변경
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+                <table class="info">
+                    <tbody>
+                        <tr>
+                            <th scope="row">증상</th>
+                            <td>재생/정지를 반복해도 프로세스 메모리가 계속 증가</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">원인 추적</th>
+                            <td>
+                                재생을 멈춘 뒤에도 디코딩 스레드가 <code>is_full()</code> 체크 없이<br>
+                                계속 push 하는 것을 확인 &rarr; 포화된 RB에 디코딩을 계속 밀어 넣는 구조
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">조치</th>
+                            <td>
+                                RB 사이즈를 명시적으로 제한하고,<br>
+                                <code>is_full()</code>인 트랙은 해당 사이클에서 즉시 스킵하도록 수정.<br>
+                                동시에 트랙 시작 인덱스를 매 사이클 라운드로빈으로 회전시켜<br>
+                                특정 트랙만 과도하게 디코딩되지 않게 분산
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
+            
 
-            <section id="architecture">
-                <h2>Architecture Gallery</h2>
-                <figure style="margin-top:10px">
-                    <img src="assets/Main.png" loading="lazy" decoding="async" alt="Main pipeline overview">
-                    <figcaption class="figcap">Main · 전체 오디오 파이프라인</figcaption>
-                </figure>
+        <section id="architecture">
+            <h2>Architecture Gallery</h2>
+            <figure style="margin-top:10px">
+                <img src="assets/Main.png" loading="lazy" decoding="async" alt="Main pipeline overview">
+                <figcaption class="figcap">Main · 전체 오디오 파이프라인</figcaption>
+            </figure>
 
-                <figure style="margin-top:10px">
-                    <img src="assets/Rust.png" loading="lazy" decoding="async" alt="Rust side components">
-                    <figcaption class="figcap">Rust · 링버퍼 & 디코더 구조</figcaption>
-                </figure>
+            <figure style="margin-top:10px">
+                <img src="assets/Rust.png" loading="lazy" decoding="async" alt="Rust side components">
+                <figcaption class="figcap">Rust · 링버퍼 & 디코더 구조</figcaption>
+            </figure>
 
-                <figure style="margin-top:10px">
-                    <img src="assets/Thread,Decoding,AudioCallBack.png" loading="lazy" decoding="async"
-                        alt="Thread & callback timing">
-                    <figcaption class="figcap">Threads · 워커/콜백 타이밍</figcaption>
-                </figure>
-            </section>
+            <figure style="margin-top:10px">
+                <img src="assets/Thread,Decoding,AudioCallBack.png" loading="lazy" decoding="async"
+                    alt="Thread & callback timing">
+                <figcaption class="figcap">Threads · 워커/콜백 타이밍</figcaption>
+            </figure>
+        </section>
 
-            <section id="code">
-                <h2>Core Mixing Snippet</h2>
-                <pre><code>// rust_render_interleaved: out[L R L R …]
+        <section id="code">
+            <h2>Core Mixing Snippet</h2>
+            <pre><code>// rust_render_interleaved: out[L R L R …]
 out.fill(0.0); //무음 설정
 for (ti, cons_mx) in eng.consumers.iter().enumerate() { //트랙별 순회
   if ti >= params.volume.len() || ti >= params.pan.len() || ti >= params.muted.len() { continue; } //안전
@@ -980,17 +1043,17 @@ for (ti, cons_mx) in eng.consumers.iter().enumerate() { //트랙별 순회
   }
   if underrun { let (_, cv) = &*eng.thread_wait; cv.notify_all(); } //언더런 시 워커 알림
 }</code></pre>
-            </section>
+        </section>
 
-            <section id="build">
-                <h2>Build & Run</h2>
-                <ul>
-                    <li>Host: Windows 10/11, MSVC, JUCE 7.x</li>
-                    <li>Rust: stable, <code>cargo build --release</code> (FFI 라이브러리)</li>
-                    <li>App: JUCE CMake → Release 빌드 후 exe 실행</li>
-                    <li>Audio: WASAPI/ASIO 선택, 48 kHz · 256 frames 추천</li>
-                </ul>
-            </section>
+        <section id="build">
+            <h2>Build & Run</h2>
+            <ul>
+                <li>Host: Windows 10/11, MSVC, JUCE 7.x</li>
+                <li>Rust: stable, <code>cargo build --release</code> (FFI 라이브러리)</li>
+                <li>App: JUCE CMake → Release 빌드 후 exe 실행</li>
+                <li>Audio: WASAPI/ASIO 선택, 48 kHz · 256 frames 추천</li>
+            </ul>
+        </section>
         </section>
 
         <section id="sub-projects">
